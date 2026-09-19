@@ -1,0 +1,561 @@
+# GoogleAuth for FOSSBilling - translation template.
+# Copyright 2026 Web Boomers (https://www.webboomers.in)
+# This file is distributed under the same MIT licence as the GoogleAuth extension.
+#
+# FOSSBilling loads translations from its own "messages" catalogue, so these
+# strings are contributed through the FOSSBilling translation workflow. This
+# template exists so translators can see every customer- and admin-facing string
+# this extension adds, in one place.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GoogleAuth for FOSSBilling 1.0.1\n"
+"Report-Msgid-Bugs-To: support@webboomers.in\n"
+"POT-Creation-Date: 2026-09-11 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/client/mod_googleauth_complete.html.twig:29
+msgid "-- Select Country --"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:128
+msgid "A client secret is stored. Leave blank to keep it."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:165
+msgid "About"
+msgstr ""
+
+#: Config/ConfigValidator.php:80
+msgid "Add your Google OAuth client ID and client secret before enabling Google authentication."
+msgstr ""
+
+#: Service.php:87
+msgid "Allows the staff member to delete every Google account connection. Customer accounts are not affected."
+msgstr ""
+
+#: Service.php:82
+msgid "Allows the staff member to see the Google authentication configuration and connected accounts."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:75
+msgid "Also add your site\\'s origin under \"Authorized JavaScript origins\" only if Google asks for it; this extension does not need it."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:128 Auth/AuthenticationFlow.php:170
+msgid "An account with that email address already exists here. Please sign in with your usual details, then connect Google from your profile."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:101
+msgid "Authentication Mode"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:65 templates/admin/mod_googleauth_settings.html.twig:71
+msgid "Authorized redirect URI"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:70
+msgid "Cancel and register manually"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:118
+msgid "Client ID"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:125
+msgid "Client Secret"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:12 templates/client/mod_googleauth_complete.html.twig:3
+msgid "Complete your registration"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:36
+msgid "Configuration: complete"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:39
+msgid "Configuration: incomplete"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:51 templates/client/widgets/mod_googleauth_profile_card.html.twig:40
+msgid "Connect Google Account"
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_profile_card.html.twig:23
+msgid "Connect Google to sign in without typing your password."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:16 templates/client/widgets/mod_googleauth_profile_card.html.twig:15
+msgid "Connected"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:147
+msgid "Connected accounts"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:22
+msgid "Connected on"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:49
+msgid "Connecting your Google account lets you sign in with Google instead of typing your password. Your email address and password keep working either way."
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_login_button.html.twig:18
+msgid "Continue with Google"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:186
+msgid "Copied"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:72
+msgid "Copy"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:67
+msgid "Copy this exact URI into the Google Cloud Console, under your OAuth client\\'s \"Authorized redirect URIs\". It is generated from this installation\\'s configured URL."
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:66
+msgid "Create my account"
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:156
+msgid "Creating an account with Google is not available on this site."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:112
+msgid "Creating an account with Google is not available on this site. Please register first, then connect Google from your profile."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:149
+msgid "Customers who have connected a Google account"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:159
+msgid "Delete all connections"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:157
+msgid "Delete connections"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:157
+msgid "Delete every Google account connection?"
+msgstr ""
+
+#: Service.php:86
+msgid "Delete Google account connections"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:152
+msgid "Deleting the connections removes only the Google sign-in option. Customer accounts, invoices, orders and support tickets are never affected. Do this before uninstalling if you want a clean removal."
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_profile_card.html.twig:42
+msgid "Details"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:41
+msgid "Disabled"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:36 templates/client/widgets/mod_googleauth_profile_card.html.twig:33 templates/client/widgets/mod_googleauth_profile_card.html.twig:35
+msgid "Disconnect"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:38
+msgid "Disconnect Google Account"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:36 templates/client/widgets/mod_googleauth_profile_card.html.twig:33
+msgid "Disconnect your Google account?"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:29
+msgid "Disconnecting only removes the Google sign-in option. Your account, invoices, services and support tickets are not affected, and you can sign in with your email address and password as usual."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:90
+msgid "Enable Google Authentication"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:35 templates/admin/mod_googleauth_settings.html.twig:38
+msgid "Enabled"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:37
+msgid "Female"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:115
+msgid "From Google Cloud Console → APIs & Services → Credentials → OAuth client ID (Web application)."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:10 templates/client/mod_googleauth_account.html.twig:3 templates/client/widgets/mod_googleauth_profile_card.html.twig:12
+msgid "Google Account"
+msgstr ""
+
+#: Controller/Admin.php:48 templates/admin/mod_googleauth_settings.html.twig:17 templates/admin/mod_googleauth_settings.html.twig:28 templates/admin/mod_googleauth_settings.html.twig:3
+msgid "Google Authentication"
+msgstr ""
+
+#: Controller/Client.php:107
+msgid "Google authentication could not be completed. Please try again or use your usual login details."
+msgstr ""
+
+#: Service.php:699
+msgid "Google authentication endpoint blocked by the api_guest rate limit."
+msgstr ""
+
+#: Config/ExtensionConfig.php:118
+msgid "Google authentication is disabled in the extension settings."
+msgstr ""
+
+#: Config/ExtensionConfig.php:125
+msgid "Google authentication is enabled but the OAuth client ID and/or client secret are missing."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:51
+msgid "Google authentication is switched on but the OAuth client ID and secret are missing, so no Google button is shown to customers. Add the credentials below."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:81
+msgid "Google authentication settings saved"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:108
+msgid "Google can sign in customers who have already connected their Google account. No new accounts are created. This is the default."
+msgstr ""
+
+#: Google/GoogleOAuthClient.php:120 Google/GoogleOAuthClient.php:159
+msgid "Google could not be reached right now. Please try again in a moment, or sign in with your usual details."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:19
+msgid "Google email"
+msgstr ""
+
+#: Google/GoogleIdentity.php:79
+msgid "Google has not verified the email address on that account. Please verify it with Google and try again."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:110
+msgid "Google is offered on both pages and can both sign in and register customers."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:109
+msgid "Google is offered on the registration page and can create new customer accounts."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:114
+msgid "Google OAuth credentials"
+msgstr ""
+
+#: Google/GoogleIdentity.php:78
+msgid "Google reported the email address on this identity as unverified."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:13
+msgid "Google sign-in is not available on this site at the moment."
+msgstr ""
+
+#: Config/ExtensionConfig.php:119
+msgid "Google sign-in is not available on this site."
+msgstr ""
+
+#: Config/ExtensionConfig.php:126
+msgid "Google sign-in is not configured correctly on this site. Please contact support."
+msgstr ""
+
+#: Google/GoogleOAuthClient.php:158
+msgid "Google signing keys (JWKS) could not be retrieved."
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:234
+msgid "Google signup blocked by the client_signup rate limit."
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:248
+msgid "Google signup blocked by the client_signup_email rate limit."
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:124
+msgid "Google signup refused: new registrations are disabled in the client module settings."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:167
+msgid "GoogleAuth for FOSSBilling is open source (MIT), developed by"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:58
+msgid "I agree to the Terms of Service and Privacy Policy."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:25
+msgid "Last Google sign-in"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:30
+msgid "Lets your customers sign in, and optionally register, with their Google account. Email and password sign-in keeps working exactly as before."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:110
+msgid "Login & Signup"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:108
+msgid "Login Only"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:36
+msgid "Male"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:44
+msgid "Mode"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:84
+msgid "New installations start disabled and in Login Only mode."
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:125
+msgid "New registrations are temporarily disabled on this site."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:255 Auth/AuthenticationFlow.php:92
+msgid "No account here is linked to that Google account. Sign in with your usual details and connect Google from your profile, or create an account first."
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:38
+msgid "Non-binary"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:46 templates/client/widgets/mod_googleauth_profile_card.html.twig:22
+msgid "Not connected"
+msgstr ""
+
+#: Security/FlowStateStore.php:61
+msgid "OAuth callback received with no pending flow in the session (missing, already used or expired state)."
+msgstr ""
+
+#: Security/FlowStateStore.php:75
+msgid "OAuth state expired before the callback was received."
+msgstr ""
+
+#: Security/FlowStateStore.php:68
+msgid "OAuth state mismatch: the value returned by the callback does not match the value issued for this session."
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_login_button.html.twig:13 templates/client/widgets/mod_googleauth_signup_button.html.twig:23
+msgid "or"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:39
+msgid "Other"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:128
+msgid "Paste the client secret"
+msgstr ""
+
+#: Config/ConfigValidator.php:45
+msgid "Please choose one of the available authentication modes: Login Only, Signup Only, or Login & Signup."
+msgstr ""
+
+#: Service.php:665
+msgid "Please sign in before connecting your Google account."
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:61
+msgid "Privacy Policy"
+msgstr ""
+
+#: Config/ConfigValidator.php:79
+msgid "Refused to enable Google authentication without both a client ID and a client secret."
+msgstr ""
+
+#: Service.php:664
+msgid "Refused to start a Google account linking flow for a visitor who is not signed in."
+msgstr ""
+
+#: Config/ConfigValidator.php:52
+msgid "Rejected a client ID that does not look like a Google OAuth client ID."
+msgstr ""
+
+#: Service.php:723
+msgid "Rejected a Google authentication request with a missing or invalid CSRF token."
+msgstr ""
+
+#: Config/ConfigValidator.php:64
+msgid "Rejected an implausibly long client secret."
+msgstr ""
+
+#: Auth/AccountLinker.php:68
+msgid "Removing a Google account link that points at missing client #{client_id}."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:135
+msgid "Requested Google scopes"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:140
+msgid "Save settings"
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_profile_card.html.twig:37
+msgid "Set a password before disconnecting Google."
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:41
+msgid "Set a password on your account before disconnecting Google, so that you do not lose access."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:16 templates/admin/mod_googleauth_settings.html.twig:83
+msgid "Settings"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:91
+msgid "Show Google sign-in options to customers. Requires a client ID and secret."
+msgstr ""
+
+#: templates/client/widgets/mod_googleauth_signup_button.html.twig:28
+msgid "Sign up with Google"
+msgstr ""
+
+#: Service.php:598
+msgid "Signup completion attempted with no pending Google identity in the session."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:169
+msgid "Signup completion refused: an account with that email address now exists."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:155
+msgid "Signup completion refused: the authentication mode no longer allows signup."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:162
+msgid "Signup completion refused: the Google identity was linked while the form was open."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:109
+msgid "Signup Only"
+msgstr ""
+
+#: templates/client/mod_googleauth_account.html.twig:16 templates/client/mod_googleauth_account.html.twig:46 templates/client/widgets/mod_googleauth_profile_card.html.twig:15 templates/client/widgets/mod_googleauth_profile_card.html.twig:22
+msgid "Status"
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:169
+msgid "Support"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:59
+msgid "Terms of Service"
+msgstr ""
+
+#: Config/ConfigValidator.php:65
+msgid "That client secret is not valid. Copy it exactly from the Google Cloud Console."
+msgstr ""
+
+#: Config/ConfigValidator.php:53
+msgid "That does not look like a valid Google OAuth client ID. Copy it exactly from the Google Cloud Console."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:163
+msgid "That Google account is already connected to an account on this site. Please sign in instead."
+msgstr ""
+
+#: Auth/AccountLinker.php:100
+msgid "That Google account is already connected to another account on this site."
+msgstr ""
+
+#: Service.php:655
+msgid "That Google sign-in option is not available on this site."
+msgstr ""
+
+#: Service.php:724
+msgid "That request could not be verified. Please try again from your account page."
+msgstr ""
+
+#: Service.php:226
+msgid "The core login template has no \"client.page.login.form.after\" widget slot, so the Google login button cannot be injected into it. This slot was added in FOSSBilling 0.8.2. Upgrade FOSSBilling, or place the button yourself by overriding mod_page_login.html.twig in your theme (see README.md)."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:57
+msgid "The googleauth_account table could not be read. Reinstall the extension so it can be created, then reload this page."
+msgstr ""
+
+#: templates/admin/mod_googleauth_settings.html.twig:130
+msgid "The secret is stored encrypted and is never shown again, never sent to the client area and never written to the log."
+msgstr ""
+
+#: Auth/SessionAuthenticator.php:39
+msgid "This account is not active. Please contact support."
+msgstr ""
+
+#: Security/FlowStateStore.php:62 Security/FlowStateStore.php:76
+msgid "This Google sign-in link has expired or was already used. Please start again."
+msgstr ""
+
+#: Security/FlowStateStore.php:69
+msgid "This Google sign-in request could not be verified. Please start again."
+msgstr ""
+
+#: Service.php:599
+msgid "This sign-up has expired. Please start again."
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:16
+msgid "This site needs a few more details before your account can be created."
+msgstr ""
+
+#: Service.php:700
+msgid "Too many attempts. Please wait a little while and try again."
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:235 Auth/CustomerProvisioner.php:249
+msgid "Too many sign-up attempts. Please wait a little while and try again."
+msgstr ""
+
+#: Google/GoogleIdentity.php:50
+msgid "Verified ID token contains no email address."
+msgstr ""
+
+#: Service.php:81
+msgid "View Google authentication status"
+msgstr ""
+
+#: templates/client/mod_googleauth_complete.html.twig:15
+msgid "You are signing up as"
+msgstr ""
+
+#: Auth/CustomerProvisioner.php:145
+msgid "Your account could not be created right now. Please try again or contact support."
+msgstr ""
+
+#: Auth/AccountLinker.php:107
+msgid "Your account is already connected to a Google account. Disconnect it first if you want to use a different one."
+msgstr ""
+
+#: Auth/AuthenticationFlow.php:199
+msgid "Your account was created, but it could not be connected to Google. Please use \"Forgot password\" to set a password and sign in."
+msgstr ""
+
+#: Auth/AccountLinker.php:122
+msgid "Your Google account could not be connected right now. Please try again."
+msgstr ""
+
+#: Google/GoogleIdentity.php:51
+msgid "Your Google account did not share an email address, which is required here. Please use a Google account with an email address, or sign in with your usual details."
+msgstr ""

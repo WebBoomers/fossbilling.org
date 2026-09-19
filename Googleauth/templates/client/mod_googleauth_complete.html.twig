@@ -1,0 +1,77 @@
+{% extends "layout_public.html.twig" %}
+
+{% block meta_title %}{{ 'Complete your registration'|trans }}{% endblock %}
+
+{% block body_class %}page-signup{% endblock %}
+{% block body %}
+    <div class="container h-100">
+        <div class="row h-75 justify-content-center align-items-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-center m-4">{{ 'Complete your registration'|trans }}</h5>
+
+                        <p class="text-secondary">
+                            {{ 'You are signing up as'|trans }} <strong>{{ google_email }}</strong>.
+                            {{ 'This site needs a few more details before your account can be created.'|trans }}
+                        </p>
+
+                        <form method="post" action="{{ 'googleauth/complete_signup'|api_url(role: 'guest') }}"
+                              class="auth" {{ fb_api_form({redirect: '/'|url}) }}>
+                            <input type="hidden" name="CSRFToken" value="{{ CSRFToken }}">
+
+                            {% for field in fields %}
+                                <div class="mb-3">
+                                    <label class="form-label required" for="googleauth-{{ field.name }}">{{ field.title|trans }}</label>
+
+                                    {% if field.name == 'country' %}
+                                        <select class="form-select" id="googleauth-{{ field.name }}" name="country" required="required">
+                                            <option value="">{{ '-- Select Country --'|trans }}</option>
+                                            {% for value, label in guest.system_countries %}
+                                                <option value="{{ value }}" {% if guest.system_default_country == value %}selected{% endif %}>{{ label|e }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% elseif field.name == 'gender' %}
+                                        <select class="form-select" id="googleauth-{{ field.name }}" name="gender" required="required">
+                                            <option value="male">{{ 'Male'|trans }}</option>
+                                            <option value="female">{{ 'Female'|trans }}</option>
+                                            <option value="nonbinary">{{ 'Non-binary'|trans }}</option>
+                                            <option value="other">{{ 'Other'|trans }}</option>
+                                        </select>
+                                    {% elseif field.name == 'birthday' %}
+                                        <input class="form-control" id="googleauth-{{ field.name }}" type="date" name="birthday" required="required">
+                                    {% elseif field.name == 'phone' %}
+                                        <input type="hidden" id="phone_cc" name="phone_cc" value="">
+                                        <input class="form-control js-phone-input" id="googleauth-{{ field.name }}" type="tel" name="phone"
+                                               autocomplete="tel" data-initial-country="{{ guest.system_default_country|lower }}" required="required">
+                                    {% else %}
+                                        <input class="form-control" id="googleauth-{{ field.name }}" type="text"
+                                               name="{{ field.name }}" required="required">
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+
+                            {% if settings.signup_tos|default('0') == 'explicit' %}
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="googleauth-tos" required>
+                                    <label class="form-check-label" for="googleauth-tos">
+                                        <span>{{ 'I agree to the Terms of Service and Privacy Policy.'|trans }}</span>
+                                        <a href="{{ 'tos'|url }}" target="_blank">{{ 'Terms of Service'|trans }}</a>
+                                        &middot;
+                                        <a href="{{ 'privacy-policy'|url }}" target="_blank">{{ 'Privacy Policy'|trans }}</a>
+                                    </label>
+                                </div>
+                            {% endif %}
+
+                            <button class="btn btn-primary w-100" type="submit">{{ 'Create my account'|trans }}</button>
+                        </form>
+
+                        <div class="mt-3 text-center">
+                            <a class="btn btn-link" href="{{ 'signup'|url }}">{{ 'Cancel and register manually'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

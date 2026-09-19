@@ -1,0 +1,48 @@
+{#
+    The signup button.
+
+    FOSSBilling's registration page has no widget slot inside its form, so this
+    widget uses the page-level `client.theme.body.end` slot and limits itself to
+    the signup page. The block renders - and works - exactly as it is; the few
+    lines of script below only move it next to the registration form so it looks
+    like part of the page. With JavaScript disabled the button is still visible
+    and still functional, just below the card.
+
+    Prefer no script at all? Override `mod_page_signup.html.twig` in your theme
+    and include `partial_googleauth_button.html.twig` wherever you want it - see
+    README.md, "Signup page placement".
+#}
+{% if request_path == 'signup' %}
+    {% set googleauth = guest.googleauth_button_context %}
+    {% if googleauth.show_on_signup %}
+        <div class="container" id="googleauth-signup-slot">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 text-secondary">
+                        <hr class="flex-grow-1 my-0">
+                        <span class="small">{{ 'or'|trans }}</span>
+                        <hr class="flex-grow-1 my-0">
+                    </div>
+                    {{ include('partial_googleauth_button.html.twig', {
+                        googleauth_url: googleauth.signup_url,
+                        googleauth_label: 'Sign up with Google'|trans
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var slot = document.getElementById('googleauth-signup-slot');
+                var form = document.querySelector('form.auth');
+                if (!slot || !form || !form.parentNode) {
+                    return;
+                }
+                var block = slot.querySelector('.col-md-6, .col-lg-4') || slot;
+                form.parentNode.insertBefore(block, form.nextSibling);
+                if (slot.parentNode && slot !== block) {
+                    slot.parentNode.removeChild(slot);
+                }
+            })();
+        </script>
+    {% endif %}
+{% endif %}

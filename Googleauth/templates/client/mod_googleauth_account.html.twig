@@ -1,0 +1,57 @@
+{% extends "layout_default.html.twig" %}
+
+{% block meta_title %}{{ 'Google Account'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ 'Google Account'|trans }}</h4>
+
+                    {% if not googleauth.available %}
+                        <p class="text-secondary">{{ 'Google sign-in is not available on this site at the moment.'|trans }}</p>
+                    {% elseif googleauth.connected %}
+                        <p class="mb-1">
+                            {{ 'Status'|trans }}: <strong>{{ 'Connected'|trans }}</strong>
+                        </p>
+                        {% if googleauth.google_email %}
+                            <p class="mb-1">{{ 'Google email'|trans }}: <strong>{{ googleauth.google_email }}</strong></p>
+                        {% endif %}
+                        {% if googleauth.connected_at %}
+                            <p class="text-secondary mb-1">{{ 'Connected on'|trans }}: {{ googleauth.connected_at }}</p>
+                        {% endif %}
+                        {% if googleauth.last_login_at %}
+                            <p class="text-secondary mb-3">{{ 'Last Google sign-in'|trans }}: {{ googleauth.last_login_at }}</p>
+                        {% endif %}
+
+                        <p class="text-secondary">
+                            {{ 'Disconnecting only removes the Google sign-in option. Your account, invoices, services and support tickets are not affected, and you can sign in with your email address and password as usual.'|trans }}
+                        </p>
+
+                        {% if googleauth.can_disconnect %}
+                            <a class="btn btn-outline-danger"
+                               {{ fb_api_link({
+                                   href: 'googleauth/disconnect'|api_url(role: 'client'),
+                                   modal: {type: 'danger', title: 'Disconnect your Google account?'|trans, button: 'Disconnect'|trans},
+                                   redirect: 'googleauth/account'|url
+                               }) }}>{{ 'Disconnect Google Account'|trans }}</a>
+                        {% else %}
+                            <div class="alert alert-warning mb-0" role="alert">
+                                {{ 'Set a password on your account before disconnecting Google, so that you do not lose access.'|trans }}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <p class="mb-3">
+                            {{ 'Status'|trans }}: <strong>{{ 'Not connected'|trans }}</strong>
+                        </p>
+                        <p class="text-secondary">
+                            {{ 'Connecting your Google account lets you sign in with Google instead of typing your password. Your email address and password keep working either way.'|trans }}
+                        </p>
+                        <a class="btn btn-primary" href="{{ googleauth.connect_url }}" rel="nofollow">{{ 'Connect Google Account'|trans }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

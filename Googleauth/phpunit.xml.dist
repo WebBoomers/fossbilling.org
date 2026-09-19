@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         testdox="true"
+         failOnWarning="true"
+         failOnRisky="true">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">Auth</directory>
+            <directory suffix=".php">Config</directory>
+            <directory suffix=".php">Enum</directory>
+            <directory suffix=".php">Google</directory>
+            <directory suffix=".php">OAuth</directory>
+            <directory suffix=".php">Security</directory>
+        </include>
+    </source>
+</phpunit>

@@ -1,0 +1,28 @@
+{#
+    Shared Google button.
+
+    Rendered as a normal link styled with the theme's own button classes, so it
+    inherits the theme's focus ring, spacing and dark-mode colours and stays
+    keyboard accessible without any extra CSS.
+
+    The mark is a neutral placeholder rather than Google's logo. Google's brand
+    guidelines require their official asset to be used unmodified; drop it in by
+    overriding this template in your theme (see README.md, "Branding the button").
+
+    Expected variables:
+      googleauth_url    - where the button points
+      googleauth_label  - the visible, translated label
+#}
+<a href="{{ googleauth_url }}"
+   role="button"
+   class="btn btn-outline-secondary w-100 d-inline-flex align-items-center justify-content-center gap-2"
+   rel="nofollow"
+   data-googleauth-button>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="M15 7a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2"></path>
+        <path d="M10 8l4 4-4 4"></path>
+        <path d="M3 12h11"></path>
+    </svg>
+    <span>{{ googleauth_label }}</span>
+</a>

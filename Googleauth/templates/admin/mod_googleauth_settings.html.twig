@@ -1,0 +1,223 @@
+{% extends request.ajax ? 'layout_blank.html.twig' : 'layout_default.html.twig' %}
+
+{% block meta_title %}{{ 'Google Authentication'|trans }}{% endblock %}
+
+{% set active_menu = 'system' %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ '/'|url }}">
+                <svg class="icon">
+                    <use href="#home"/>
+                </svg>
+            </a>
+        </li>
+        <li class="breadcrumb-item"><a href="{{ 'system'|url }}">{{ 'Settings'|trans }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ 'Google Authentication'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    {% set status = admin.googleauth_status() %}
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                <div>
+                    <h4 class="card-title mb-1">{{ 'Google Authentication'|trans }}</h4>
+                    <p class="text-secondary mb-0">
+                        {{ 'Lets your customers sign in, and optionally register, with their Google account. Email and password sign-in keeps working exactly as before.'|trans }}
+                    </p>
+                </div>
+                <div class="text-end">
+                    {% if status.state == 'ready' %}
+                        <span class="badge bg-success">{{ 'Enabled'|trans }}</span>
+                        <div class="text-secondary small mt-1">{{ 'Configuration: complete'|trans }}</div>
+                    {% elseif status.state == 'incomplete' %}
+                        <span class="badge bg-warning">{{ 'Enabled'|trans }}</span>
+                        <div class="text-secondary small mt-1">{{ 'Configuration: incomplete'|trans }}</div>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ 'Disabled'|trans }}</span>
+                    {% endif %}
+                    <div class="text-secondary small mt-1">
+                        {{ 'Mode'|trans }}: <strong>{{ status.auth_mode_label|trans }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            {% if status.state == 'incomplete' %}
+                <div class="alert alert-warning mt-3 mb-0" role="alert">
+                    {{ 'Google authentication is switched on but the OAuth client ID and secret are missing, so no Google button is shown to customers. Add the credentials below.'|trans }}
+                </div>
+            {% endif %}
+
+            {% if not status.table_ready or not status.flow_table_ready %}
+                <div class="alert alert-danger mt-3 mb-0" role="alert">
+                    <strong>{{ 'Database tables are missing.'|trans }}</strong>
+                    {{ 'This extension needs two tables:'|trans }}
+                    <code>googleauth_account</code>{% if status.table_ready %} ({{ 'present'|trans }}){% else %} ({{ 'MISSING'|trans }}){% endif %},
+                    <code>googleauth_flow</code>{% if status.flow_table_ready %} ({{ 'present'|trans }}){% else %} ({{ 'MISSING'|trans }}){% endif %}.
+                    {{ 'They are created automatically on the next Google sign-in attempt. If this warning persists, run the module\'s Update action from Extensions, and check that the database user is allowed to create tables.'|trans }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ 'Authorized redirect URI'|trans }}</h5>
+            <p class="text-secondary">
+                {{ 'Copy this exact URI into the Google Cloud Console, under your OAuth client\'s "Authorized redirect URIs". It is generated from this installation\'s configured URL.'|trans }}
+            </p>
+            <div class="input-group">
+                <input type="text" class="form-control" id="googleauth-redirect-uri" value="{{ status.redirect_uri }}" readonly
+                       aria-label="{{ 'Authorized redirect URI'|trans }}">
+                <button class="btn btn-outline-secondary" type="button" id="googleauth-copy-uri">{{ 'Copy'|trans }}</button>
+            </div>
+            <p class="text-secondary small mt-2 mb-0">
+                {{ 'Also add your site\'s origin under "Authorized JavaScript origins" only if Google asks for it; this extension does not need it.'|trans }}
+            </p>
+        </div>
+    </div>
+
+    <form method="post" action="{{ 'googleauth/config_update'|api_url }}"
+          {{ fb_api_form({message: 'Google authentication settings saved'|trans, reload: true}) }}>
+        {% embed 'partial_admin_form_card.html.twig' with {
+            title: 'Settings'|trans,
+            subtitle: 'New installations start disabled and in Login Only mode.'|trans
+        } %}
+            {% block form_content %}
+                <div class="border rounded px-3 py-3 mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                        <div>
+                            <div class="fw-semibold">{{ 'Enable Google Authentication'|trans }}</div>
+                            <div class="text-secondary small">{{ 'Show Google sign-in options to customers. Requires a client ID and secret.'|trans }}</div>
+                        </div>
+                        <label class="form-check form-switch m-0">
+                            <input class="form-check-input" type="checkbox" name="enabled" value="1"
+                                   {% if status.enabled %}checked="checked"{% endif %}>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" for="googleauth-mode">{{ 'Authentication Mode'|trans }}</label>
+                    <select class="form-select" id="googleauth-mode" name="auth_mode">
+                        {% for value, label in status.modes %}
+                            <option value="{{ value }}" {% if status.auth_mode == value %}selected{% endif %}>{{ label|trans }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="text-secondary small mt-2">
+                        <div><strong>{{ 'Login Only'|trans }}</strong> &mdash; {{ 'Google can sign in customers who have already connected their Google account. No new accounts are created. This is the default.'|trans }}</div>
+                        <div><strong>{{ 'Signup Only'|trans }}</strong> &mdash; {{ 'Google is offered on the registration page and can create new customer accounts.'|trans }}</div>
+                        <div><strong>{{ 'Login & Signup'|trans }}</strong> &mdash; {{ 'Google is offered on both pages and can both sign in and register customers.'|trans }}</div>
+                    </div>
+                </div>
+
+                <div class="border border-warning rounded px-3 py-3 mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                        <div>
+                            <div class="fw-semibold">{{ 'Sign in when the Google email matches'|trans }}</div>
+                            <div class="text-secondary small">
+                                {{ 'Let a customer sign in when Google reports a verified email address matching theirs, without connecting their account first.'|trans }}
+                            </div>
+                        </div>
+                        <label class="form-check form-switch m-0">
+                            <input class="form-check-input" type="checkbox" name="link_by_verified_email" value="1"
+                                   {% if status.link_by_verified_email %}checked="checked"{% endif %}>
+                        </label>
+                    </div>
+                    <div class="alert alert-warning mt-3 mb-0" role="alert">
+                        <strong>{{ 'Understand the trade-off before switching this on.'|trans }}</strong>
+                        {{ 'Google\'s "verified" only means Google verified the address. For gmail.com that is strong. For a custom domain it is not: anyone who controls the domain can create a Google Workspace account on it, so a Workspace administrator at your customer\'s company - or whoever acquires the domain after it lapses - could sign into that customer\'s billing account without knowing the password.'|trans }}
+                        {{ 'Left off, customers sign in once with their password and connect Google from their account page, which proves they already hold the account.'|trans }}
+                        {{ 'Every sign-in that uses this path is recorded in the log.'|trans }}
+                    </div>
+                </div>
+
+                <h5 class="card-title mb-1">{{ 'Google OAuth credentials'|trans }}</h5>
+                <p class="text-secondary">{{ 'From Google Cloud Console → APIs & Services → Credentials → OAuth client ID (Web application).'|trans }}</p>
+
+                <div class="mb-3">
+                    <label class="form-label" for="googleauth-client-id">{{ 'Client ID'|trans }}</label>
+                    <input class="form-control" id="googleauth-client-id" type="text" name="client_id"
+                           value="{{ status.client_id }}" autocomplete="off" spellcheck="false"
+                           placeholder="1234567890-abcdefg.apps.googleusercontent.com">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="googleauth-client-secret">{{ 'Client Secret'|trans }}</label>
+                    <input class="form-control" id="googleauth-client-secret" type="password" name="client_secret"
+                           value="" autocomplete="new-password" spellcheck="false"
+                           placeholder="{{ status.client_secret_set ? 'A client secret is stored. Leave blank to keep it.'|trans : 'Paste the client secret'|trans }}">
+                    <div class="form-hint text-secondary">
+                        {{ 'The secret is stored encrypted and is never shown again, never sent to the client area and never written to the log.'|trans }}
+                    </div>
+                </div>
+
+                <div class="text-secondary small">
+                    {{ 'Requested Google scopes'|trans }}: <code>{{ status.scopes|join(' ') }}</code>
+                </div>
+            {% endblock %}
+
+            {% block form_actions %}
+                <button type="submit" class="btn btn-primary">{{ 'Save settings'|trans }}</button>
+            {% endblock %}
+        {% endembed %}
+    </form>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ 'Connected accounts'|trans }}</h5>
+            <p class="text-secondary">
+                {{ 'Customers who have connected a Google account'|trans }}: <strong>{{ status.linked_accounts }}</strong>
+            </p>
+            <p class="text-secondary small">
+                {{ 'Deleting the connections removes only the Google sign-in option. Customer accounts, invoices, orders and support tickets are never affected. Do this before uninstalling if you want a clean removal.'|trans }}
+            </p>
+            <a class="btn btn-outline-danger"
+               {{ fb_api_link({
+                   href: 'googleauth/purge_links'|api_url,
+                   modal: {type: 'danger', title: 'Delete every Google account connection?'|trans, button: 'Delete connections'|trans},
+                   reload: true
+               }) }}>{{ 'Delete all connections'|trans }}</a>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ 'About'|trans }}</h5>
+            <p class="text-secondary mb-0">
+                {{ 'GoogleAuth for FOSSBilling is open source (MIT), developed by'|trans }}
+                <a href="https://www.webboomers.in" target="_blank" rel="noopener noreferrer">Web Boomers</a>.
+                {{ 'Support'|trans }}: <a href="mailto:support@webboomers.in">support@webboomers.in</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var button = document.getElementById('googleauth-copy-uri');
+            var field = document.getElementById('googleauth-redirect-uri');
+            if (!button || !field) {
+                return;
+            }
+            button.addEventListener('click', function () {
+                field.select();
+                field.setSelectionRange(0, field.value.length);
+                var done = function () {
+                    var original = button.textContent;
+                    button.textContent = {{ 'Copied'|trans|json_encode|raw }};
+                    setTimeout(function () { button.textContent = original; }, 1500);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(field.value).then(done, function () {});
+                } else if (document.execCommand) {
+                    document.execCommand('copy');
+                    done();
+                }
+            });
+        })();
+    </script>
+{% endblock %}

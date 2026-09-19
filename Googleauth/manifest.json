@@ -1,0 +1,13 @@
+{
+  "id": "googleauth",
+  "type": "mod",
+  "name": "Google Authentication",
+  "description": "Adds Google (OAuth 2.0 / OpenID Connect) login and signup to the FOSSBilling client area, with PKCE, state validation and safe account linking.",
+  "author": "Web Boomers",
+  "author_url": "https://www.webboomers.in",
+  "homepage_url": "https://www.webboomers.in",
+  "project_url": "https://github.com/webboomers/fossbilling-googleauth",
+  "license": "MIT",
+  "icon_url": "icon.svg",
+  "version": "1.1.4"
+}

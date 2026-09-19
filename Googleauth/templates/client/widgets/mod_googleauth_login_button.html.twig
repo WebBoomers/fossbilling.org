@@ -1,0 +1,21 @@
+{#
+    Rendered into the core login page through the `client.page.login.form.after`
+    widget slot. No core template is modified.
+
+    Shown only when Google authentication is enabled, fully configured, and the
+    authentication mode allows signing in (Login Only or Login & Signup).
+#}
+{% set googleauth = guest.googleauth_button_context %}
+{% if googleauth.show_on_login %}
+    <div class="googleauth-login mt-3">
+        <div class="d-flex align-items-center gap-2 mb-3 text-secondary">
+            <hr class="flex-grow-1 my-0">
+            <span class="small">{{ 'or'|trans }}</span>
+            <hr class="flex-grow-1 my-0">
+        </div>
+        {{ include('partial_googleauth_button.html.twig', {
+            googleauth_url: googleauth.login_url,
+            googleauth_label: 'Continue with Google'|trans
+        }) }}
+    </div>
+{% endif %}
